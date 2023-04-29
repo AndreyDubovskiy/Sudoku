@@ -1,4 +1,4 @@
-class SudokuController < ApplicationController
+class SudokusController < ApplicationController
   @start_array
   @current_array
 
