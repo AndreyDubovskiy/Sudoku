@@ -1,6 +1,7 @@
 class SudokusController < ApplicationController
   @start_array
   @current_array
+  #test
 
   def init()
     @start_array = Array.new(9){Array.new(9, 0)}
