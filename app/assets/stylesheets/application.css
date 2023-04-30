@@ -43,3 +43,11 @@ td { border: solid thin; height: 2.8em; width: 2.8em; text-align: center; paddin
     width: 2.8em;
     border: none;
 }
+.red-text-field {
+    background-color: rgba(52, 52, 52, 0.66);
+    color: #30702e;
+    text-align: center;
+    height: 2.8em;
+    width: 2.8em;
+    border: none;
+}
