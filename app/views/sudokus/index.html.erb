@@ -1,38 +1,4 @@
 
-<h1>Sudoku Page</h1>
-<p>This is my Sudoku page.</p>
-
-<h1>Arrays:</h1>
-
-<h1>=========================================================</h1>
-
-
-<table>
-  <caption>Sudoku of the day</caption>
-  <colgroup><col><col><col></colgroup>
-  <colgroup><col><col><col></colgroup>
-  <colgroup><col><col><col></colgroup>
-  <tbody>
-  <tr> <td><%=  @start_array[0][0] %> <td><%=  @start_array[0][1] %>  <td><%=  @start_array[0][2] %> <td><%=  @start_array[0][3] %> <td><%=  @start_array[0][4] %>  <td><%=  @start_array[0][5] %> <td><%=  @start_array[0][6] %> <td><%=  @start_array[0][7] %>  <td><%=  @start_array[0][8] %>
-  <tr> <td>  <td>2 <td>  <td>  <td>9 <td>  <td>  <td>1 <td>
-  <tr> <td>7 <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>6
-  <tbody>
-  <tr> <td>2 <td>  <td>4 <td>  <td>3 <td>  <td>9 <td>  <td>8
-  <tr> <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>
-  <tr> <td>5 <td>  <td>  <td>9 <td>  <td>7 <td>  <td>  <td>1
-  <tbody>
-  <tr> <td>6 <td>  <td>  <td>  <td>5 <td>  <td>  <td>  <td>2
-  <tr> <td>  <td>  <td>  <td>  <td>7 <td>  <td>  <td>  <td>
-  <tr> <td>9 <td>  <td>  <td>8 <td>  <td>2 <td>  <td>  <td>5
-</table>
-
-
-
-
-
-
-
-<h1>=========================================================</h1>
 
 <% @row_num = 0 %>
 <table>
@@ -59,8 +25,11 @@
 <br>
 <br>
 
-<div style="display: flex; justify-content: center;">
-  <%= button_to 'Заполнить', class: 'btn btn-primary' %>
-  <%= button_to 'Очистить', class: 'btn btn-primary' %>
-  <%= button_to 'Решить', class: 'btn btn-primary' %>
+<div class="btn-container">
+  <button class="btn">Заполнить</button>
+  <button class="btn">Очистить</button>
+  <button class="btn">Решить</button>
 </div>
+
+
+

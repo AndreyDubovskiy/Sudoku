@@ -1,29 +1,45 @@
 
+.btn {
+    background-color: #151618;
+    color: #30702e;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 5px;
+}
+caption {
+    font-size: 30px;
+}
+.btn:hover {
+    background-color: #39393d;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+}
 body {
     background-color: black;
-    color: white;
+    color: #30702e;
     text-align: center;
 }
 h1 {
     background-color: black;
-    color: white;
+    color: #30702e;
 }
 table { border-collapse: collapse; font-family: Calibri, sans-serif;aspect-ratio: 1;margin: auto; }
 colgroup, tbody { border: solid medium; }
-td { border: solid thin; height: 1.8em; width: 1.8em; text-align: center; padding: 0; }
+td { border: solid thin; height: 2.8em; width: 2.8em; text-align: center; padding: 0; }
 
 .black-text-field {
     background-color: black;
-    color: white;
+    color: #30702e;
     text-align: center;
-    height: 1.8em;
-    width: 1.8em;
+    height: 2.8em;
+    width: 2.8em;
     border: none;
 }
-.btn{
-    background-color: black;
-    color: #811515;
-    text-align: center;
-}
-
-
