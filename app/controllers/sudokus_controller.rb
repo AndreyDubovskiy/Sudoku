@@ -1,9 +1,10 @@
 class SudokusController < ApplicationController
   @start_array
   @current_array
+  @end_array
 
   def init_array()
-    @start_array = [[1,2,3,4,5,6,7,8,9],
+    tmp = [[1,2,3,4,5,6,7,8,9],
                     [4,5,6,7,8,9,1,2,3],
                     [7,8,9,1,2,3,4,5,6],
                     [2,3,4,5,6,7,8,9,1],
@@ -12,6 +13,26 @@ class SudokusController < ApplicationController
                     [3,4,5,6,7,8,9,1,2],
                     [6,7,8,9,1,2,3,4,5],
                     [9,1,2,3,4,5,6,7,8]]
+    return tmp
+  end
+
+  def prepare_array(array, n)
+    last = 0
+    while (n > 0)
+      row = rand(0..8)
+      col = rand(0..8)
+      if array[row][col] != 0
+        last = array[row][col]
+        array[row][col] = 0
+        numbers = variants_all(array, row, col)
+        if numbers.size == 1
+          n-=1
+        else
+          array[row][col] = last
+        end
+      end
+    end
+    return array
   end
 
   def shuffle(array)
@@ -178,8 +199,9 @@ class SudokusController < ApplicationController
 
   def index()
     puts("init start")
-    @start_array = init_array
-    @start_array = shuffle(@start_array)
+    @end_array = init_array
+    @end_array = shuffle(@end_array)
+    @start_array = prepare_array(@end_array.clone, 27)
     puts("init finish")
     render 'index'
   end
