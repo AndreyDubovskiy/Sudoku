@@ -1,0 +1,35 @@
+
+
+<% @row_num = 0 %>
+<table>
+  <caption>Sudoku </caption>
+  <colgroup><col><col><col></colgroup>
+  <colgroup><col><col><col></colgroup>
+  <colgroup><col><col><col></colgroup>
+  <% @start_array.each do |row| %>
+    <% if @row_num %3  == 0%><tbody>
+    <% end %>
+    <tr>
+      <% @row_num += 1 %>
+      <% row.each do |element| %>
+        <% if element == 0 %>
+          <td><%= text_field_tag "sudoku[][#{@row_num - 1}][#{row.index(element)}]", "", size: 1, maxlength: 1, class: "black-text-field",onkeypress: 'return event.charCode >= 49 && event.charCode <= 57'  %></td>
+        <% else %>
+          <td><%= element %></td>
+        <% end %>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+
+<br>
+<br>
+
+<div class="btn-container">
+  <button class="btn">Заполнить</button>
+  <button class="btn">Очистить</button>
+  <button class="btn">Решить</button>
+</div>
+
+
+
