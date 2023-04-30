@@ -1,7 +1,7 @@
 class SudokusController < ApplicationController
-  @start_array
-  @current_array
-  @end_array
+  @@start_array
+  @@user_sudoku
+  @@end_array
 
   def init_array()
     tmp = [[1,2,3,4,5,6,7,8,9],
@@ -199,32 +199,39 @@ class SudokusController < ApplicationController
 
   def index()
     puts("init start")
-    @end_array = init_array
-    @end_array = shuffle(@end_array)
-    @start_array = prepare_array(@end_array.clone, 27)
+    @@end_array = init_array
+    @@end_array = shuffle(@@end_array)
+    @@start_array = []
+    for row in @@end_array
+      @@start_array.push(row.clone)
+    end
+    @@start_array = prepare_array(@@start_array, 27)
+    @start_array = @@start_array
     puts("init finish")
     render 'index'
   end
 
   def test()
-    @user_sudoku = [[1,2,3,4,5,6,7,8,9],
-                    [4,5,6,7,8,9,1,2,3],
-                    [7,8,9,1,3,3,4,5,6],
-                    [2,3,4,5,6,7,8,9,1],
-                    [5,5,7,8,9,1,2,3,4],
-                    [8,9,1,2,3,4,5,6,7],
-                    [3,4,5,6,7,2,9,1,2],
-                    [6,7,8,9,1,2,3,4,5],
-                    [9,1,2,3,4,5,6,7,8]]
-    @end_sudoku = [[1,2,3,4,5,6,7,8,9],
-                   [4,5,6,7,8,9,1,2,3],
-                   [7,8,9,1,2,3,4,5,6],
-                   [2,3,4,5,6,7,8,9,1],
-                   [5,6,7,8,9,1,2,3,4],
-                   [8,9,1,2,3,4,5,6,7],
-                   [3,4,5,6,7,8,9,1,2],
-                   [6,7,8,9,1,2,3,4,5],
-                   [9,1,2,3,4,5,6,7,8]]
+    @user_sudoku = @@user_sudoku
+    @end_array = @@end_array
     render 'test'
   end
+
+  def usesudoku()
+    if(params[:commit] == 'Check')
+      @@user_sudoku = @@start_array.clone
+      for row in 0..8
+        for col in 0..8
+          if(@@user_sudoku[row][col] == 0)
+            @@user_sudoku[row][col] = params['sudoku'+row.to_s+col.to_s]
+          end
+        end
+      end
+      @user_sudoku = @@user_sudoku
+      @end_array = @@end_array
+
+      redirect_to 'http://127.0.0.1:3000/test'
+    end
+  end
+
 end

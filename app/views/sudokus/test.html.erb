@@ -10,16 +10,16 @@
   <colgroup><col><col><col></colgroup>
   <colgroup><col><col><col></colgroup>
   <colgroup><col><col><col></colgroup>
-  <% @user_sudoku.each do |row| %>
+  <% for row in 0..@user_sudoku.size-1 %>
     <% if @row_num %3  == 0%><tbody>
     <% end %>
     <tr>
       <% @row_num += 1 %>
-      <% row.each do |element| %>
-        <% if  @end_sudoku[@user_sudoku.index(row)][row.index(element)] != element %>
-          <td><%= text_field_tag "sudoku[][#{@row_num - 1}][#{row.index(element)}]", element, size: 1, maxlength: 1, class: "red-text-field",onkeypress: 'return event.charCode >= 49 && event.charCode <= 57'  %></td>
+      <% for elem in 0..@user_sudoku[row].size-1 %>
+        <% if  @end_array[row][elem] != @user_sudoku[row][elem] %>
+          <td><%= text_field_tag "sudoku#{row}#{elem}", @user_sudoku[row][elem], size: 1, maxlength: 1, class: "red-text-field",onkeypress: 'return event.charCode >= 49 && event.charCode <= 57'  %></td>
         <% else %>
-          <td><%= element %></td>
+          <td><%= @user_sudoku[row][elem] %></td>
         <% end %>
       <% end %>
     </tr>
