@@ -27,40 +27,41 @@
 </table>
 
 
-
-
-
-
-
-<h1>=========================================================</h1>
-
 <% @row_num = 0 %>
 <table>
-  <caption>Sudoku </caption>
+  <caption>Sudoku of the day</caption>
   <colgroup><col><col><col></colgroup>
   <colgroup><col><col><col></colgroup>
   <colgroup><col><col><col></colgroup>
-  <% @current_array.each do |row| %>
+  <% @start_array.each do |row| %>
     <% if @row_num %3  == 0%><tbody>
     <% end %>
+    <% @row_num += 1 %>
     <tr>
-      <% @row_num += 1 %>
       <% row.each do |element| %>
-        <% if element == 0 %>
-          <td><%= text_field_tag "sudoku[][#{@row_num - 1}][#{row.index(element)}]", "", size: 1, maxlength: 1, class: "black-text-field",onkeypress: 'return event.charCode >= 49 && event.charCode <= 57'  %></td>
-        <% else %>
-          <td><%= element %></td>
-        <% end %>
+        <td><%= element %>
       <% end %>
-    </tr>
+
   <% end %>
 </table>
 
-<br>
-<br>
 
-<div style="display: flex; justify-content: center;">
-  <%= button_to 'Заполнить', class: 'btn btn-primary' %>
-  <%= button_to 'Очистить', class: 'btn btn-primary' %>
-  <%= button_to 'Решить', class: 'btn btn-primary' %>
-</div>
+
+<%= button_to 'Заполнить'%>
+<%= button_to 'Очистить' %>
+<%= button_to 'Решить' %>
+
+<% @end_array_array.each do |row| %>
+  <% if @row_num %3  == 0%><tbody><% end %>
+  <% @row_num += 1 %>
+  <tr>
+    <% row.each do |element| %>
+      <% if element == 0 %>
+        <td><%= text_field_tag "sudoku[][#{@row_num - 1}][#{loop.index -
+          1}]", "", size: 1, maxlength: 1 %></td>
+      <% else %>
+        <td><%= element %></td>
+      <% end %>
+    <% end %>
+  </tr>
+<% end %>

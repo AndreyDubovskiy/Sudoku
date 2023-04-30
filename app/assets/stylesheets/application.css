@@ -1,11 +1,29 @@
+
 body {
     background-color: black;
     color: white;
+    text-align: center;
 }
 h1 {
     background-color: black;
     color: white;
 }
-table { border-collapse: collapse; font-family: Calibri, sans-serif; }
+table { border-collapse: collapse; font-family: Calibri, sans-serif;aspect-ratio: 1;margin: auto; }
 colgroup, tbody { border: solid medium; }
-td { border: solid thin; height: 1.4em; width: 1.4em; text-align: center; padding: 0; }
+td { border: solid thin; height: 1.8em; width: 1.8em; text-align: center; padding: 0; }
+
+.black-text-field {
+    background-color: black;
+    color: white;
+    text-align: center;
+    height: 1.8em;
+    width: 1.8em;
+    border: none;
+}
+.btn{
+    background-color: black;
+    color: #811515;
+    text-align: center;
+}
+
+

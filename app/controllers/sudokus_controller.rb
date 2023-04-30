@@ -56,7 +56,7 @@ class SudokusController < ApplicationController
   def index()
     @start_array = Array.new(9){Array.new(9, 0)}
     @end_array = Array.new(9){Array.new(9, 1)}
-    @current_array = Array.new(9){Array.new(9, 0)}
+    @current_array = Array.new(9) { Array.new(9) { rand(0..1) } }
     render 'index'
   end
 
