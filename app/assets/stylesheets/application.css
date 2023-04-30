@@ -9,7 +9,9 @@
     cursor: pointer;
     margin: 5px;
 }
-
+caption {
+    font-size: 30px;
+}
 .btn:hover {
     background-color: #39393d;
 }
