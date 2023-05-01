@@ -1,24 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Page`s
 
-Things you may want to cover:
+- /index  - start page;
 
-* Ruby version
+# Buttons
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Enter - enter your own sudoku;
+- Fill - generate new sudoku;
+- Clear - clear input field in sudoku;
+- AutoFill - auto-complete sudoku;
+- Check - checking sudoku for errors;
