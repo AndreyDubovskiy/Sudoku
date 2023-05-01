@@ -3,7 +3,7 @@
 <% @row_num = 0 %>
 <%= form_tag '/usesudoku' do %>
 <table>
-  <caption>Sudokus </caption>
+  <caption>Sudoku</caption>
   <colgroup><col><col><col></colgroup>
   <colgroup><col><col><col></colgroup>
   <colgroup><col><col><col></colgroup>
@@ -27,6 +27,8 @@
 <br>
 
 <div class="btn-container">
+  <%= hidden_field_tag :commit, 'Enter' %>
+  <%= submit_tag 'Enter', class: "btn"%>
   <%= hidden_field_tag :commit, 'Fill' %>
   <%= submit_tag 'Fill', class: "btn"%>
   <%= hidden_field_tag :commit, 'Clear' %>

@@ -1,0 +1,43 @@
+<% @row_num = 0 %>
+<%= form_tag '/usesudoku' do %>
+  <table>
+    <caption>Sudoku</caption>
+    <colgroup><col><col><col></colgroup>
+    <colgroup><col><col><col></colgroup>
+    <colgroup><col><col><col></colgroup>
+    <% for row in 0..@user_sudoku.size-1 %>
+      <% if @row_num %3  == 0%><tbody>
+      <% end %>
+      <tr>
+        <% @row_num += 1 %>
+        <% for elem in 0..@user_sudoku[row].size-1 %>
+          <% if  @end_array[row][elem] != @user_sudoku[row][elem] %>
+            <td><%= text_field_tag "sudoku#{row}#{elem}", @user_sudoku[row][elem], size: 1, maxlength: 1, class: "red-text-field",onkeypress: 'return event.charCode >= 49 && event.charCode <= 57'  %></td>
+          <% elsif @start_array[row][elem] == 0 %>
+            <td><%= text_field_tag "sudoku#{row}#{elem}", @user_sudoku[row][elem], size: 1, maxlength: 1, class: "black-text-field",onkeypress: 'return event.charCode >= 49 && event.charCode <= 57'  %></td>
+          <% else %>
+            <td><%= @user_sudoku[row][elem] %></td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+
+  <br>
+  <br>
+
+  <div class="btn-container">
+    <%= hidden_field_tag :commit, 'Enter' %>
+    <%= submit_tag 'Enter', class: "btn"%>
+    <%= hidden_field_tag :commit, 'Fill' %>
+    <%= submit_tag 'Fill', class: "btn"%>
+    <%= hidden_field_tag :commit, 'Clear' %>
+    <%= submit_tag 'Clear', class: "btn"%>
+    <%= hidden_field_tag :commit, 'AutoFill' %>
+    <%= submit_tag 'AutoFill', class: "btn"%>
+    <%= hidden_field_tag :commit, 'Check' %>
+    <%= submit_tag 'Check', class: "btn"%>
+  </div>
+<% end %>
+
+

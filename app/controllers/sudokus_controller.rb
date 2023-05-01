@@ -211,26 +211,94 @@ class SudokusController < ApplicationController
     render 'index'
   end
 
-  def test()
+  def ckeck()
     @user_sudoku = @@user_sudoku
     @end_array = @@end_array
-    render 'test'
+    @start_array = @@start_array
+    render 'ckeck'
+  end
+
+  def clear()
+    @start_array = @@start_array
+    render 'index'
+  end
+
+  def autofill()
+    @start_array = @@end_array
+    render 'index'
+  end
+
+  def enter()
+    @@end_array = nil
+    @@user_sudoku = nil
+    @@start_array = Array.new(9, Array.new(9, 0))
+    @start_array = @@start_array
+    render 'index'
   end
 
   def usesudoku()
     if(params[:commit] == 'Check')
-      @@user_sudoku = @@start_array.clone
+      @@user_sudoku = []
+      for row in @@start_array
+        @@user_sudoku.push(row.clone)
+      end
       for row in 0..8
         for col in 0..8
           if(@@user_sudoku[row][col] == 0)
-            @@user_sudoku[row][col] = params['sudoku'+row.to_s+col.to_s]
+            @@user_sudoku[row][col] = params['sudoku'+row.to_s+col.to_s].to_i
           end
         end
       end
-      @user_sudoku = @@user_sudoku
-      @end_array = @@end_array
-
-      redirect_to 'http://127.0.0.1:3000/test'
+      if(@@end_array != nil)
+        @user_sudoku = @@user_sudoku
+        @end_array = @@end_array
+        redirect_to 'http://127.0.0.1:3000/ckeck'
+      else
+        @@end_array = Array.new(9, Array.new(9, -1))
+        for row in 0..8
+          for col in 0..8
+            if(valid_row(@@user_sudoku, row) and valid_col(@@user_sudoku, col) and valid_3x3(@@user_sudoku))
+              @@end_array[row][col] = @@user_sudoku[row][col]
+            end
+          end
+        end
+        redirect_to 'http://127.0.0.1:3000/ckeck'
+      end
+    elsif (params[:commit] == 'Clear')
+      redirect_to 'http://127.0.0.1:3000/clear'
+    elsif (params[:commit] == 'Fill')
+      redirect_to 'http://127.0.0.1:3000/index'
+    elsif (params[:commit] == 'AutoFill')
+      if(@@end_array != nil)
+        redirect_to 'http://127.0.0.1:3000/autofill'
+      else
+        @@user_sudoku = []
+        for row in @@start_array
+          @@user_sudoku.push(row.clone)
+        end
+        for row in 0..8
+          for col in 0..8
+            if(@@user_sudoku[row][col] == 0)
+              @@user_sudoku[row][col] = params['sudoku'+row.to_s+col.to_s].to_i
+            end
+          end
+        end
+        @@end_array = []
+        for row in @@user_sudoku
+          @@end_array.push(row.clone)
+        end
+        for row in 0..8
+          for col in 0..8
+            if (@@user_sudoku[row][col] == 0)
+              numbers = variants_all(@@user_sudoku, row, col)
+              @@end_array[row][col] = numbers.sample
+            end
+          end
+        end
+        redirect_to 'http://127.0.0.1:3000/autofill'
+      end
+    elsif (params[:commit] == 'Enter')
+      redirect_to 'http://127.0.0.1:3000/enter'
     end
   end
 
