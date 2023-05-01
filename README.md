@@ -1,4 +1,5 @@
-# README
+# CS-31 Dubovskiy, Hordiienko
+# SudokuApp
 
 # Page`s
 
