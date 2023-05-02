@@ -252,7 +252,7 @@ class SudokusController < ApplicationController
       if(@@end_array != nil)
         @user_sudoku = @@user_sudoku
         @end_array = @@end_array
-        redirect_to 'http://127.0.0.1:3000/ckeck'
+        redirect_to ckeck_path
       else
         @@end_array = Array.new(9, Array.new(9, -1))
         for row in 0..8
@@ -262,15 +262,15 @@ class SudokusController < ApplicationController
             end
           end
         end
-        redirect_to 'http://127.0.0.1:3000/ckeck'
+        redirect_to ckeck_path
       end
     elsif (params[:commit] == 'Clear')
-      redirect_to 'http://127.0.0.1:3000/clear'
+      redirect_to clear_path
     elsif (params[:commit] == 'Fill')
-      redirect_to 'http://127.0.0.1:3000/index'
+      redirect_to index_path
     elsif (params[:commit] == 'AutoFill')
       if(@@end_array != nil)
-        redirect_to 'http://127.0.0.1:3000/autofill'
+        redirect_to autofill_path
       else
         @@user_sudoku = []
         for row in @@start_array
@@ -295,10 +295,10 @@ class SudokusController < ApplicationController
             end
           end
         end
-        redirect_to 'http://127.0.0.1:3000/autofill'
+        redirect_to autofill_path
       end
     elsif (params[:commit] == 'Enter')
-      redirect_to 'http://127.0.0.1:3000/enter'
+      redirect_to enter_path
     end
   end
 
